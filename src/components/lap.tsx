@@ -1,4 +1,4 @@
-import { formattedSeconds } from "../utils"
+import { formattedSeconds } from '../utils'
 
 interface LapProps {
   index: number
@@ -6,7 +6,7 @@ interface LapProps {
   onDelete: () => void
 }
 
-const Lap = ({ index, lap, onDelete }: LapProps) => (
+const Lap = ({ index, lap, onDelete }: LapProps): JSX.Element => (
   <div className="stopwatch-lap">
     <strong>{index + 1}</strong>/ {formattedSeconds(lap)}
     <button onClick={onDelete}> X </button>

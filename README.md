@@ -50,6 +50,8 @@ handleDeleteClick = (index: number) => {
 
 **Remove usages of `any` and add types for state**
 
+Ideally the project is set up with eslint and `@typescript-eslint/no-explicit-any`, so issues like this don't come up in the first place.
+
 ```
 interface StopwatchState {
   secondsElapsed: number
@@ -96,6 +98,7 @@ We can simplify the rendering of the `reset` and `lap` buttons by using a `Fragm
 - We should probably also reset `incrementer` and `lastClearedIncrementer` in `handleResetClick`. Even though it's not necessary now, it could cause problems down the line
 - The type for `onDelete` throws a linting error: `Don't use {} as a type. {} actually means "any non-nullish value"`
 - The condition of `this.laps` in the template will always return true for an array, even if it's empty. If we want to check whether an array has values, we can use `laps.length > 0`
+- We should avoid using unnecessary short forms such as `sec` for `seconds`. There's not much value in saving a couple characters compared to a potential decrease in readability
 
 ## Refactored class-based component
 
