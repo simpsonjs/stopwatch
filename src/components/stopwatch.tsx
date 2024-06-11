@@ -17,11 +17,11 @@ const Stopwatch = ({ initialSeconds }: StopwatchProps): JSX.Element => {
   }, [incrementer])
 
   const handleStartClick = () => {
-    const incrementer = setInterval(() => {
+    const interval = setInterval(() => {
       setSecondsElapsed((prevState) => prevState + 1)
     }, 1000)
 
-    setIncrementer(incrementer)
+    setIncrementer(interval)
   }
 
   const handleStopClick = () => {
@@ -49,7 +49,7 @@ const Stopwatch = ({ initialSeconds }: StopwatchProps): JSX.Element => {
     <div className="stopwatch">
       <h1 className="stopwatch-timer">{formattedSeconds(secondsElapsed)}</h1>
 
-      {secondsElapsed === 0 || incrementer === lastClearedIncrementer ? (
+      {incrementer === lastClearedIncrementer ? (
         <button type="button" className="start-btn" onClick={handleStartClick}>
           start
         </button>
@@ -59,7 +59,7 @@ const Stopwatch = ({ initialSeconds }: StopwatchProps): JSX.Element => {
         </button>
       )}
 
-      {secondsElapsed !== 0 && (
+      {Boolean(incrementer) && (
         <Fragment>
           {incrementer === lastClearedIncrementer ? (
             <button type="button" onClick={handleResetClick}>

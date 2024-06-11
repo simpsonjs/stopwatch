@@ -76,7 +76,7 @@ This can cause issues if `stopwatch-laps` has styling. If the laps list is not b
 We can simplify the rendering of the `reset` and `lap` buttons by using a `Fragment`. This makes it easier to read since we don't have to mentally parse 2 separate sets of conditions. This also makes it so that it's not possible for both buttons to be rendered at the same time, in case of a logic error:
 
 ```
-{secondsElapsed !== 0 && (
+{Boolean(incrementer) && (
   <Fragment>
     {incrementer === lastClearedIncrementer ? (
       <button type="button" onClick={this.handleResetClick}>
@@ -185,7 +185,7 @@ class Stopwatch extends Component<StopwatchProps, StopwatchState> {
       <div className="stopwatch">
         <h1 className="stopwatch-timer">{formattedSeconds(secondsElapsed)}</h1>
 
-        {secondsElapsed === 0 || incrementer === lastClearedIncrementer ? (
+        {incrementer === lastClearedIncrementer ? (
           <button
             type="button"
             className="start-btn"
@@ -203,7 +203,7 @@ class Stopwatch extends Component<StopwatchProps, StopwatchState> {
           </button>
         )}
 
-        {secondsElapsed !== 0 && (
+        {Boolean(incrementer) && (
           <Fragment>
             {incrementer === lastClearedIncrementer ? (
               <button type="button" onClick={this.handleResetClick}>
