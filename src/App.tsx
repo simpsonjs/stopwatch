@@ -1,5 +1,7 @@
+import Stopwatch from './components/stopwatch'
+
 const App = (): JSX.Element => {
-  return <div>hi</div>
+  return <Stopwatch initialSeconds={0} />
 }
 
 export default App
